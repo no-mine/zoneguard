@@ -1,0 +1,20 @@
+// Optional: install to /etc/polkit-1/rules.d/49-zoneguard.rules (as root).
+//
+// Covers read-only firewalld queries only (listing zones/services/ports,
+// the default zone, etc.) -- never a config-changing action. ZoneGuard
+// doesn't actually need this rule to function: apply_runtime_zone()
+// already falls back to pkexec (an admin-authentication prompt) whenever
+// it isn't otherwise authorized. This just avoids a handful of prompts
+// for the GUI's read-only queries on setups where those aren't already
+// unauthenticated by firewalld's own default policy.
+//
+// NOTE: "org.fedoraproject.FirewallD1.info" is firewalld's read-only
+// D-Bus action as of recent firewalld releases -- double check this
+// still matches on your firewalld version (e.g. `pkaction` or firewalld's
+// own policy file) before relying on it.
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.fedoraproject.FirewallD1.info" &&
+        subject.active && subject.local) {
+        return polkit.Result.YES;
+    }
+});

@@ -1,0 +1,13 @@
+[Unit]
+Description=ZoneGuard network zone watcher
+After=network.target
+
+[Service]
+# This matches the RPM install (entry-point script in /usr/bin). If you
+# installed with `pip install --user .` instead, override this to
+# %h/.local/bin/zoneguard-daemon (e.g. via `systemctl --user edit`).
+ExecStart=/usr/bin/zoneguard-daemon
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

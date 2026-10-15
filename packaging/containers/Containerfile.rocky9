@@ -1,0 +1,23 @@
+# Generic RPM build environment for Rocky Linux 9 / RHEL 9 targets.
+#
+# Same approach as Containerfile.fedora: minimal tooling here, real package
+# dependencies resolved at build time via `dnf builddep` against
+# packaging/zoneguard.spec. EPEL is enabled since a couple of the build
+# macros/packages (pyproject-rpm-macros) and some runtime deps may live
+# there rather than in base AppStream, depending on the exact 9.x minor
+# release.
+FROM rockylinux:9
+
+RUN dnf -y install epel-release \
+    && dnf -y install \
+        rpm-build \
+        rpmdevtools \
+        dnf-plugins-core \
+        python3-devel \
+        pyproject-rpm-macros \
+        git \
+        tar \
+        gzip \
+    && dnf clean all
+
+WORKDIR /src

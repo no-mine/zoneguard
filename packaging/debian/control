@@ -1,0 +1,33 @@
+Source: zoneguard
+Section: net
+Priority: optional
+Maintainer: ZoneGuard Maintainers <zoneguard@example.com>
+Build-Depends: debhelper-compat (= 13),
+               dh-python,
+               python3-all,
+               python3-setuptools,
+               pybuild-plugin-pyproject
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+
+Package: zoneguard
+Architecture: all
+Depends: ${python3:Depends},
+         ${misc:Depends},
+         python3-gi,
+         gir1.2-nm-1.0,
+         gir1.2-gtk-4.0,
+         gir1.2-adw-1,
+         network-manager,
+         firewalld
+Recommends: libnotify-bin
+Description: Windows-style new-network firewall zone prompting
+ ZoneGuard watches NetworkManager for newly joined networks. The first
+ time it sees one, it locks the interface to a restrictive firewalld
+ zone and prompts the user to pick the real profile (home, work,
+ public, ...) instead of silently reusing whatever zone was set up for
+ a different network.
+ .
+ Includes zoneguard-daemon (the background watcher) and
+ zoneguard-config (a settings GUI for daemon control, known networks,
+ and editing firewalld profiles directly).

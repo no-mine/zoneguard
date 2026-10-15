@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zoneguard"
+version = "0.6.1"
+description = "Windows-style network-location prompting for firewalld, built on NetworkManager's zone binding"
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = ["firewalld", "networkmanager", "firewall", "gtk", "linux"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: X11 Applications :: GTK",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: System :: Networking :: Firewalls",
+]
+dependencies = [
+    "PyGObject>=3.42",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7",
+    "ruff>=0.5",
+]
+
+[project.scripts]
+zoneguard-daemon = "zoneguard.daemon:main"
+zoneguard-config = "zoneguard.gui.app:main_config"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+# Lets `pytest` work in a fresh checkout without an editable install first.
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "SIM", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+# gi.require_version() has to run before the matching gi.repository import,
+# which necessarily pushes the remaining imports below module-level code.
+"src/zoneguard/daemon.py" = ["E402"]
+"src/zoneguard/gui/*.py" = ["E402"]

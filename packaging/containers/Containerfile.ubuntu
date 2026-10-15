@@ -1,0 +1,21 @@
+# Generic .deb build environment for Ubuntu. Deliberately minimal, same as
+# Containerfile.fedora: real build dependencies are resolved from
+# packaging/debian/control at build time (via mk-build-deps), not hardcoded
+# here.
+FROM ubuntu:24.04
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential \
+        debhelper \
+        dh-python \
+        devscripts \
+        equivs \
+        python3-all \
+        python3-setuptools \
+        ca-certificates \
+        tar \
+        gzip \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /build
+WORKDIR /src

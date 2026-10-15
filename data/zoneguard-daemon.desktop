@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=ZoneGuard
+Comment=Prompts for a firewall profile when joining a new network
+Exec=zoneguard-daemon
+Icon=zoneguard
+NoDisplay=true
+X-GNOME-Autostart-enabled=true

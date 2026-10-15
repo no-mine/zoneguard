@@ -1,0 +1,8 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: zoneguard
+
+Files: *
+Copyright: 2026 ZoneGuard contributors
+License: UNKNOWN
+ No license has been chosen for this project yet. Until one is added,
+ all rights are reserved and this package is not redistributable.

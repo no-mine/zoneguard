@@ -1,0 +1,4 @@
+data/zoneguard-daemon.service usr/lib/systemd/user
+data/zoneguard-settings.desktop usr/share/applications
+data/icons/hicolor/scalable/apps/zoneguard.svg usr/share/icons/hicolor/scalable/apps
+data/icons/hicolor/symbolic/apps/zoneguard-symbolic.svg usr/share/icons/hicolor/symbolic/apps

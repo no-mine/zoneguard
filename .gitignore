@@ -1,0 +1,62 @@
+# --- Python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+*.egg
+
+# --- virtualenvs ----------------------------------------------------------
+.venv/
+venv/
+
+# --- build / package output ----------------------------------------------
+# `dist/` is both setuptools' output and the Makefile's tree for sdist,
+# rpmbuild and deb artifacts (see SDIST_DIR / RPM_TOPDIR / DEB_OUT_DIR).
+build/
+dist/
+*.tar.gz
+
+# RPM artifacts, in case rpmbuild is ever run outside dist/
+*.rpm
+
+# .deb artifacts; dpkg-buildpackage writes these as siblings of the
+# source dir, so they can land at the repo root on an in-tree build.
+*.deb
+*.ddeb
+*.dsc
+*.changes
+*.buildinfo
+*.debian.tar.*
+
+# Debian build leftovers if debhelper is run against packaging/debian
+# in place rather than in the build container.
+packaging/debian/.debhelper/
+packaging/debian/files
+packaging/debian/debhelper-build-stamp
+packaging/debian/*.substvars
+packaging/debian/*.debhelper.log
+packaging/debian/zoneguard/
+packaging/debian/tmp/
+.pc/
+
+# --- test / lint caches ---------------------------------------------------
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# --- editors / OS ---------------------------------------------------------
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+.DS_Store
+
+# --- local tooling --------------------------------------------------------
+.claude/worktrees/
+.claude/settings.local.json

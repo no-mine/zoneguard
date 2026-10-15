@@ -1,0 +1,23 @@
+# Generic RPM build environment for Fedora targets.
+#
+# Deliberately minimal: it only has the tooling needed to resolve and build
+# an RPM from a spec file. Actual package dependencies (python3-gobject,
+# gtk4, NetworkManager-libnm, ...) are resolved at build time via
+# `dnf builddep` against packaging/zoneguard.spec, so the spec file stays
+# the single source of truth instead of drifting out of sync with this
+# Containerfile.
+ARG FEDORA_VERSION=latest
+FROM registry.fedoraproject.org/fedora:${FEDORA_VERSION}
+
+RUN dnf -y install \
+        rpm-build \
+        rpmdevtools \
+        dnf-plugins-core \
+        python3-devel \
+        pyproject-rpm-macros \
+        git \
+        tar \
+        gzip \
+    && dnf clean all
+
+WORKDIR /src

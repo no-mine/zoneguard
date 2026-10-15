@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=ZoneGuard Settings
+Comment=Review and edit firewall zones ZoneGuard has assigned to your networks
+Exec=zoneguard-config
+Icon=zoneguard
+Categories=Settings;Network;

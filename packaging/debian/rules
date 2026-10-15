@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+export PYBUILD_SYSTEM=pyproject
+export PYBUILD_NAME=zoneguard
+# Tests are already covered by the RPM build's %check and local pytest;
+# skip them here to avoid dh-python test-autodetection version quirks.
+export DEB_BUILD_OPTIONS=nocheck
+
+%:
+	dh $@
